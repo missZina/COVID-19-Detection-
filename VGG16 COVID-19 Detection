@@ -1,0 +1,37 @@
+
+from keras.layers import Input, Lambda, Dense, Flatten
+from keras.models import Model
+from keras.applications.vgg16 import VGG16
+from keras.applications.vgg16 import preprocess_input
+from keras.preprocessing import image
+from keras.preprocessing.image import ImageDataGenerator
+
+from sklearn.metrics import confusion_matrix
+import numpy as np
+import matplotlib.pyplot as plt
+
+from glob import glob
+
+
+# re-size all the images to this
+IMAGE_SIZE = [100, 100] 
+
+# training config:
+epochs = 10
+batch_size = 32
+train_path = '../content/.......'
+valid_path = '../content/......'
+plt.imshow(image.load_img(np.random.choice(image_files)))
+plt.show()
+''''''
+''''''''
+'''''''
+vgg = VGG16(input_shape=IMAGE_SIZE + [3], weights='imagenet', include_top=False)
+for layer in vgg.layers:
+  layer.trainable = False
+''''''''''''
+'''''''''''''
+'''''''''''''''
+''''''''''''
+'''''''''''
+
