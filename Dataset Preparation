@@ -1,0 +1,95 @@
+
+from keras.applications import VGG16
+from keras import models
+from keras import layers
+from keras import optimizers
+from keras.preprocessing.image import ImageDataGenerator
+from keras.models import Sequential
+import numpy as np
+from glob import glob
+import matplotlib.pyplot as plt
+from keras.applications.vgg19 import VGG19
+from keras.applications.inception_v3 import InceptionV3
+import IPython.display as display
+from PIL import Image
+import os
+import pathlib
+import tensorflow as tf
+from keras import models
+from keras import layers
+import cv2 as cv
+from keras import optimizers
+from keras.preprocessing import image
+import pandas 
+from keras.preprocessing.image import load_img
+from keras.preprocessing.image import img_to_array
+
+image_size= 224
+train_batchsize = 50
+val_batchsize = 5
+val_steps = 5
+from matplotlib import pyplot
+from matplotlib.image import imread
+# define location of dataset
+folder = '/content/drive/My Drive/datasets/train/CT_COV/'
+# plot first few images
+for i in range(1,7):
+	# define subplot
+	pyplot.subplot(330 + i)
+	# define filename
+	filename = folder + str(i) + '.png'
+	# load image pixels
+	image = imread(filename)
+	# plot raw pixel data
+	pyplot.imshow(image)
+# show the figure
+pyplot.show()
+print('       # Sample of Covid scan picture #')
+
+# dispaly picture for non infected by Covid-19
+folder1 = '/content/drive/My Drive/datasets/train/CT_NonC/'
+# plot first few images
+for i in range(1,7):
+	# define subplot
+	pyplot.subplot(330 + i)
+	# define filename
+	filename = folder1 + str(35) + str(i) + '.jpg'
+	# load image pixels
+	image = imread(filename)
+	# plot raw pixel data
+	pyplot.imshow(image)
+# show the figure
+pyplot.show()
+print('       # Sample of Non- Covid scan picture #')
+# organize dataset into a useful structure
+from os import makedirs
+from os import listdir
+from shutil import copyfile
+from random import seed
+from random import random
+# create directories
+dataset_home = 'datasets/'
+subdirs = ['train/', 'validate','test/']
+for subdir in subdirs:
+	# create label subdirectories
+	labeldirs = ['CT_COV/', 'CT_NonC/']
+	for labldir in labeldirs:
+		newdir = dataset_home + subdir + labldir
+		makedirs(newdir, exist_ok=True)
+# seed random number generator
+seed(1)
+# define ratio of pictures to use for validation
+val_ratio = 0.25
+# copy training dataset images into subdirectories
+src_directory = 'datasets/'
+for file in listdir(src_directory):
+	src = src_directory + '/' + file
+	dst_dir = 'train/'
+	if random() < val_ratio:
+		dst_dir = 'test/'
+	if file.startswith('CT_COV'):
+		dst = dataset_home + dst_dir + 'CT_COV/'  + file
+		copyfile(src, dst)
+	elif file.startswith('CT_NonC'):
+		dst = dataset_home + dst_dir + 'CT_NonC/'  + file
+		copyfile(src, dst)
