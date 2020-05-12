@@ -1,0 +1,44 @@
+from tensorflow.python.keras import backend as K
+from tensorflow.python.keras.models import Model
+from tensorflow.python.keras.layers import Flatten, Dense, Dropout
+from keras.layers import Input, Lambda, Dense, Flatten
+from keras.models import Model
+#from tensorflow.python.keras.applications.resnet50 import ResNet50 
+from keras.applications.resnet50 import ResNet50
+from keras.preprocessing import image
+from tensorflow.python.keras.optimizers import Adam
+from tensorflow.python.keras.preprocessing.image import ImageDataGenerator
+from tensorflow.keras.applications.resnet50 import preprocess_input, decode_predictions
+
+DATASET_PATH  = '/content/drive/My Drive/data'
+IMAGE_SIZE    = (224, 224)
+NUM_CLASSES   = 2
+BATCH_SIZE    = 8  # try reducing batch size or freeze more layers if your GPU runs out of memory
+FREEZE_LAYERS = 2  # freeze the first this many layers for training
+NUM_EPOCHS    = 20
+WEIGHTS_FINAL = 'model-resnet50-final.h5'
+
+''''''''''''''''
+
+''''''''''''''''''
+''''''''''''''''''''
+# show class indices
+print('****************')
+for cls, idx in train_batches.class_indices.items():
+    print('Class #{} = {}'.format(idx, cls))
+print('****************')
+''''''''''''''
+''''''''''''''''
+'''''''''''''''''
+'''''''''''''''
+
+''''''''''''''''
+net = ResNet50(include_top=False, weights='imagenet', input_tensor=None,
+               input_shape=(IMAGE_SIZE[0],IMAGE_SIZE[1],3))
+               
+               ''''''''''''''''''''
+               ''''''''''''''''''''
+               ''''''''''''''''''''''
+               ''''''''''''''''''''''
+               ''''''''''''''''''''''''
+               
